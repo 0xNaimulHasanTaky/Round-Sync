@@ -2,18 +2,13 @@
 [![license: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/newhinton/Round-Sync/blob/master/LICENSE) [![Latest Downloads](https://img.shields.io/github/downloads/newhinton/round-sync/latest/total
 )](https://github.com/newhinton/Round-Sync/releases) [![GitHub release](https://img.shields.io/github/v/release/newhinton/Round-Sync?include_prereleases)](https://github.com/newhinton/Round-Sync/releases/latest)
 [![Documentation](https://img.shields.io/badge/Documentation-roundsync.com-4aad4e)](https://roundsync.com) [![supportive flags](https://img.shields.io/badge/support-🇺🇦_🏳️‍⚧_🏳️‍🌈-4aad4e)](https://roundsync.com)
-
 [![Android Lint](https://github.com/newhinton/Round-Sync/actions/workflows/lint.yml/badge.svg)](https://github.com/newhinton/Round-Sync/actions/workflows/lint.yml)
------------
+
 A cloud file manager, powered by rclone.
 Visit [https://roundsync.com](https://roundsync.com) for more information!
 
-<br/>
-<br/>
 
-Screenshots
------------
-
+## Screenshots
 <table>
   <tr style="border:none">
     <td style="border:none">
@@ -29,11 +24,7 @@ Screenshots
 </table>
 
 
-
-
-Features
---------
-
+## Features
 |                                                            Cloud Access                                                             |                                    256 Bit Encryption<sup>[1](https://rclone.org/crypt/#file-encryption)</sup>                                     |                                                         Integrated Experience                                                         |
 |:-----------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
 | <img src="https://github.com/newhinton/Round-Sync/blob/master/docs/cloud-computing.png?raw=true" alt="Cloud Access" width="144" />  | <img src="https://github.com/newhinton/Round-Sync/blob/master/docs/locked-padlock.png?raw=true" alt="256 Bit End-to-End Encryption" width="108" /> | <img src="https://github.com/newhinton/Round-Sync/blob/master/docs/smartphone.png?raw=true" alt="Integrated Experience" width="132"/> |
@@ -50,8 +41,23 @@ Features
 - **Task Management** to allow regular runs of your important tasks!
 
 
-Intents
--------------
+## Installation
+Grab the [latest version](https://github.com/newhinton/Round-Sync/releases/latest) of the signed APK and install it on your phone.
+| CPU architecture | Where to find | APK identifier |
+|:---|:--|:---:|
+|ARM 32 Bit | older devices | ```armeabi-v7a``` |
+|**ARM 64 Bit** | **most devices** | ```arm64-v8a``` |
+|Intel/AMD 32 Bit | some TV boxes and tablets | ```x86``` |
+|Intel/AMD 64 Bit | some emulators | ```x86_64``` |
+
+If you don't know which version to pick use ```roundsync-<version>-universal-release.apk```. Most devices run ARM 64 Bit, and 64 Bit devices often can also run the respective 32 bit version at lower performance. The app runs on any phone, tablet or TV with Android 7 or newer, as long as you have a touchscreen or mouse.
+
+
+## Usage
+[See the documentation](https://roundsync.com/).
+
+
+## Intents
 This app includes the ability to launch an intent! Create a task to sync to a remote, and copy it's id (via the treedot-menu)
 The intent needs the following:
 
@@ -63,64 +69,9 @@ The intent needs the following:
 | Integer Extra   |                    task                     |        idOfTask |
 | Boolean Extra   |                notification                 |   true or false |
 
-Installation
-------------
-Grab the [latest version](https://github.com/newhinton/Round-Sync/releases/latest) of the signed APK and install it on your phone.
-| CPU architecture | Where to find | APK identifier |
-|:---|:--|:---:|
-|ARM 32 Bit | older devices | ```armeabi-v7a``` |
-|**ARM 64 Bit** | **most devices** | ```arm64-v8a``` |
-|Intel/AMD 32 Bit | some TV boxes and tablets | ```x86``` |
-|Intel/AMD 64 Bit | some emulators | ```x86_64``` |
 
-If you don't know which version to pick use ```roundsync-<version>-universal-release.apk```. Most devices run ARM 64 Bit, and 64 Bit devices often can also run the respective 32 bit version at lower performance. The app runs on any phone, tablet or TV with Android 7 or newer, as long as you have a touchscreen or mouse.
-
-Usage
-------------
-[See the documentation](https://roundsync.com/).
-
-Developing
-------------
-
-You should first make sure you have:
-
-- Go 1.20+ installed and in your PATH
-- Java installed and in your PATH
-- Android SDK command-line tools installed OR the NDK version specified in `gradle.properties`
-  installed
-
-You can then build the app normally from Android Studio or from CLI by running:
-
-```sh
-# Debug build
-./gradlew assembleOssDebug
-
-# or release build
-./gradlew assembleOssRelease
-```
-
-Known Issues
-------------
-- Reauthorization of OAuth remotes shows intermittent failures. This is currently under investigation.
-- Theming is currently not applied properly.
-
-Contributing
-------------
-See [CONTRIBUTING](./CONTRIBUTING.md)
-
-Anyone is welcome to contribute and help out. However, hate, discrimination and racism are decidedly unwelcome here. If you feel offended by this, you might belong to the group of people who are not welcome. I will not tolerate hate in any way. 
-
-
-License
------------------
-### About this app
-This app is released under the terms of the [GPLv3 license](https://github.com/newhinton/extract/blob/master/LICENSE). Community contributions are licensed under the MIT license, and [CLA Assistant](https://cla-assistant.io/) will ask you to confirm [a CLA stating that](https://gist.githubusercontent.com/x0b/889f037d76706fc9e3ab8ee1c047841b/raw/67c028b19e33111428904558cfda0c01039d1574/rcloneExplorer-cla-202001) if create a PR.
-
-
-This is a fork of RCX by [x0b](https://github.com/x0b) which is itself a fork of rcloneExplorer by [Patryk Kaczmarkiewicz](https://github.com/kaczmarkiewiczp). For the original repository, see [kaczmarkiewiczp/rcloneExplorer](https://github.com/kaczmarkiewiczp/rcloneExplorer) or [x0b/rcx](https://github.com/x0b/rcx). If you want to convey a modified version (fork), we ask you to use a different name, app icon and package id as well as proper attribution to avoid user confusion.
-
-### Libraries
-- [rclone](https://github.com/rclone/rclone) - Calling this a library is an understatement. Without rclone, there would not be RCX. See https://rclone.org/donate/ to support rclone.
+## Libraries
+- [rclone](https://github.com/rclone/rclone) - Calling this a library is an understatement. Without rclone, there would not be Round Sync. See https://rclone.org/donate/ to support rclone.
 - [Jetpack AndroidX](https://developer.android.com/license)
 - [Floating Action Button SpeedDial](https://github.com/leinardi/FloatingActionButtonSpeedDial) - A Floating Action Button Speed Dial implementation for Android that follows the Material Design specification.
 - [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling.
@@ -129,3 +80,19 @@ This is a fork of RCX by [x0b](https://github.com/x0b) which is itself a fork of
 - [Recyclerview Animators](https://github.com/wasabeef/recyclerview-animators) - An Android Animation library which easily add itemanimator to RecyclerView items.
 - [Toasty](https://github.com/GrenderG/Toasty) - The usual Toast, but with steroids.
 - Icons from [Flaticon](https://www.flaticon.com) courtesy of [Smashicons](https://www.flaticon.com/authors/smashicons) and [Freepik](https://www.flaticon.com/authors/freepik)
+
+
+## Contributing
+See [CONTRIBUTING](./CONTRIBUTING.md)
+
+Anyone is welcome to contribute and help out. However, hate, discrimination and racism are decidedly unwelcome here. If you feel offended by this, you might belong to the group of people who are not welcome. I will not tolerate hate in any way.
+
+
+## License
+This app is released under the terms of the [GPLv3 license](https://github.com/newhinton/extract/blob/master/LICENSE). Community contributions are licensed under the MIT license, and [CLA Assistant](https://cla-assistant.io/) will ask you to confirm [a CLA stating that](https://gist.githubusercontent.com/x0b/889f037d76706fc9e3ab8ee1c047841b/raw/67c028b19e33111428904558cfda0c01039d1574/rcloneExplorer-cla-202001) if create a PR.
+
+
+## About this app
+This is a fork of [**RCX**](https://github.com/x0b/rcx) by **x0b**<sup>[x0b](https://github.com/x0b)</sup> which is itself a fork of [**rcloneExplorer**](https://github.com/patrykcoding/rcloneExplorer) by **Patryk Kaczmarkiewicz**<sup>[patrykcoding](https://github.com/patrykcoding)</sup> .
+
+If you want to convey a modified version (fork), we ask you to use a different name, app icon and package id as well as proper attribution to avoid user confusion.
