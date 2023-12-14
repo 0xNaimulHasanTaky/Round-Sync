@@ -1,64 +1,30 @@
-name: Android CI
-
-on:
-  workflow_dispatch:
-#  schedule:
-#    - cron: '0 22 * * *' # run at 0:00 GMT+2
-
-jobs:
-#  hasChanged:
-#    continue-on-error: true
-#    name: Verify that changes have occured in the last 24h
-#    if: ${{ github.event_name == 'schedule' }}
-#    run: test -z $(git rev-list --after="24 hours" ${{ github.sha }}) && echo "::set-output name=hasChanged::false"
-
-  createArtifacts:
-#    needs: hasChanged
-#    if: ${{ needs.hasChanged.outputs.hasChanged != 'false' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
-    - name: Set up Go 1.19.8
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.19.8
-      id: go
-    - name: Install NDK
-      run: |
-        NDK_VERSION="$(grep -E "^de\.felixnuesse\.extract\.ndkVersion=" gradle.properties | cut -d'=' -f2)"
-        yes | sudo "${ANDROID_HOME}/tools/bin/sdkmanager" --licenses
-        sudo "${ANDROID_HOME}/tools/bin/sdkmanager" "ndk;${NDK_VERSION}"
-    - name: Build app
-      run: ./gradlew assembleOssRelease
     - name: Upload APK (arm)
       uses: actions/upload-artifact@v3
       with:
         name: nightly-armeabi.apk
-        path: app/build/outputs/apk/oss/debug/roundsync_v*?(-beta)-oss-armeabi-v7a-debug.apk
+        path: app/build/outputs/apk/oss/debug/*-oss-armeabi-v7a-debug.apk
+
     - name: Upload APK (arm64)
       uses: actions/upload-artifact@v3
       with:
         name: nightly-arm64.apk
-        path: app/build/outputs/apk/oss/debug/roundsync_v*?(-beta)-oss-arm64-v8a-debug.apk
+        path: app/build/outputs/apk/oss/debug/*-oss-arm64-v8a-debug.apk
+
     - name: Upload APK (x86)
       uses: actions/upload-artifact@v3
       with:
         name: nightly-x86.apk
-        path: app/build/outputs/apk/oss/debug/roundsync_v*?(-beta)-oss-x86-debug.apk
-    - name: Upload APK (arm)
+        path: app/build/outputs/apk/oss/debug/*-oss-x86-debug.apk
+
+    - name: Upload APK (x64)
       uses: actions/upload-artifact@v3
       with:
         name: nightly-x64.apk
-        path: app/build/outputs/apk/oss/debug/roundsync_v*?(-beta)-oss-x86_64-debug.apk
+        path: app/build/outputs/apk/oss/debug/*-oss-x86_64-debug.apk
+
     - name: Upload APK (universal)
       uses: actions/upload-artifact@v3
       with:
         name: nightly-universal.apk
-        path: app/build/outputs/apk/oss/debug/roundsync_v*?(-beta)-oss-universal-debug.apk
+        path: app/build/outputs/apk/oss/debug/*-oss-universal-debug.apk
         retention-days: 14
